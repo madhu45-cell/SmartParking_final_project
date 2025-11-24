@@ -1,0 +1,15 @@
+# Create railway.toml
+cat > railway.toml << 'EOF'
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "cd backend/smart_parking_backend && python manage.py migrate && gunicorn smart_parking_backend.wsgi:application --bind 0.0.0.0:$PORT"
+
+[env]
+DEBUG = "false"
+ALLOWED_HOSTS = ".railway.app"
+EOF
+
+# Fix Python version
+echo "python-3.11" > backend/smart_parking_backend/runtime.txt

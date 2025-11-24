@@ -1,0 +1,14 @@
+[phases.setup]
+cmds = [
+    "cd backend/smart_parking_backend && pip install -r requirements.txt",
+    "cd frontend && npm install"
+]
+
+[phases.build]
+cmds = [
+    "cd backend/smart_parking_backend && python manage.py collectstatic --noinput",
+    "cd frontend && npm run build"
+]
+
+[start]
+cmd = "cd backend/smart_parking_backend && python manage.py migrate && gunicorn smart_parking_backend.wsgi:application --bind 0.0.0.0:$PORT"
