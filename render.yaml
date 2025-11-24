@@ -1,0 +1,45 @@
+services:
+  # Django Backend
+  - type: web
+    name: smartparking-backend
+    env: python
+    region: ohio
+    plan: free
+    rootDirectory: backend/smart_parking_backend
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: |
+      python manage.py migrate
+      gunicorn smart_parking_backend.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: .onrender.com
+      - key: DB_NAME
+        value: smartparking
+      - key: DB_USER
+        value: your_mysql_user
+      - key: DB_PASSWORD
+        value: your_mysql_password
+      - key: DB_HOST
+        value: your_mysql_host
+      - key: DB_PORT
+        value: 3306
+
+  # React Frontend - Correct static configuration
+  - type: web
+    name: smartparking-frontend
+    plan: free
+    buildCommand: |
+      npm install
+      npm run build
+    publishDirectory: build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://smartparking-backend.onrender.com
+      - key: REACT_APP_MAP_API_KEY
+        value: your_google_maps_api_key_here
