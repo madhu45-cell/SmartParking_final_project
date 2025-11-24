@@ -2,24 +2,19 @@
   "name": "smartparking-frontend",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "axios": "^1.5.0",
     "react-router-dom": "^6.15.0",
-    "bootstrap": "^5.3.8",
-    "react-icons": "^5.5.0"
+    "bootstrap": "^5.3.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "react-scripts start",
-    "preview": "react-scripts start",
-    "render-build": "npm install && npm run build"
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [

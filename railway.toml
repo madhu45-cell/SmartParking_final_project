@@ -1,5 +1,3 @@
-# Create railway.toml
-cat > railway.toml << 'EOF'
 [build]
 builder = "nixpacks"
 
@@ -9,7 +7,4 @@ startCommand = "cd backend/smart_parking_backend && python manage.py migrate && 
 [env]
 DEBUG = "false"
 ALLOWED_HOSTS = ".railway.app"
-EOF
-
-# Fix Python version
-echo "python-3.11" > backend/smart_parking_backend/runtime.txt
+CORS_ALLOW_ALL_ORIGINS = "false"
