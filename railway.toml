@@ -8,3 +8,7 @@ startCommand = "cd backend/smart_parking_backend && python manage.py migrate && 
 DEBUG = "false"
 ALLOWED_HOSTS = ".railway.app"
 CORS_ALLOW_ALL_ORIGINS = "false"
+
+# Explicitly define the build process
+[build.args]
+NIXPACKS_BUILD_CMD = "cd backend/smart_parking_backend && pip install -r requirements.txt && python manage.py collectstatic --noinput"
